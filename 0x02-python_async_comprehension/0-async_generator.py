@@ -5,17 +5,15 @@ import random
 
 async def async_generator():
     """ loop 10 times"""
-    result = []
     for _ in range(10):
         await asyncio.sleep(1)
-        num = random.uniform(0, 10)
-        result.append(num)
-        yield num
+        yield random.uniform(0, 10)
 
+async def print_yielded_values():
+    """relies on 0-main"""
+    result = []
+    async for i in async_generator():
+        result.append(i)
     print(result)
 
-async def main():
-    async for num in async_generator():
-        pass
-
-asyncio.run(main())
+asyncio.run(print_yielded_values())
