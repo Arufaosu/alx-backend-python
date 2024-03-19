@@ -9,10 +9,8 @@ async def async_generator():
         await asyncio.sleep(1)
         yield random.uniform(0, 10)
 
-async def print_yielded_values():
-    result = []
-    async for i in async_generator():
-        result.append(i)
-    print(result)
+async def main():
+    async for num in async_generator():
+        print(num)
 
-asyncio.run(print_yielded_values())
+asyncio.run(main())
