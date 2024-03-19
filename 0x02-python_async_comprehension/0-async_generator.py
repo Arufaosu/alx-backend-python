@@ -1,19 +1,12 @@
 #!/usr/bin/env python3
 """0-async_generator.py"""
 import asyncio
+from typing import AsyncGenerator
 import random
 
-async def async_generator():
+async def async_generator() -> AsyncGenerator[float, None]:
     """ loop 10 times"""
     for _ in range(10):
         await asyncio.sleep(1)
-        yield random.uniform(0, 10)
-
-async def print_yielded_values():
-    """relies on 0-main"""
-    result = []
-    async for i in async_generator():
-        result.append(i)
-    print(result)
-
-asyncio.run(print_yielded_values())
+        num = random.uniform(0, 10)
+        yield num
